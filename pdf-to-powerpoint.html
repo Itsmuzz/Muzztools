@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PDF to PowerPoint Converter - Turn your PDF files into easy-to-edit PPT and PPTX slideshows.">
+  <meta name="keywords" content="PDF to PowerPoint, PDF to PPT, PDF to PPTX, PDF converter, web tools">
+  <meta name="author" content="PDFToPowerPoint">
+  <title>PDF to PowerPoint Converter</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #000;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Upload Section */
+    .upload-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+    }
+
+    .upload-btn:hover {
+      background-color: #333;
+    }
+
+    /* Convert Button */
+    .convert-btn {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .convert-btn button {
+      padding: 1rem 2rem;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+    }
+
+    .convert-btn button:hover {
+      background-color: #333;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border-top: 1px solid #ddd;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+      color: #555;
+    }
+
+    /* Icons */
+    .icon {
+      margin-right: 0.5rem;
+    }
+  </style>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8171789665821084/4952652190" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-file-powerpoint icon"></i>PDF to PowerPoint Converter</h1>
+    <p>Turn your PDF files into easy-to-edit PPT and PPTX slideshows.</p>
+  </header>
+
+  <main>
+    <!-- Ad Unit 1 -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-8171789665821084/4952652190"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- PDF Upload Section -->
+    <section class="upload-section">
+      <input type="file" id="pdfUpload" accept="application/pdf" hidden>
+      <label for="pdfUpload" class="upload-btn"><i class="fas fa-upload icon"></i>Upload PDF</label>
+    </section>
+
+    <!-- Convert Button -->
+    <section class="convert-btn">
+      <button id="convertToPptBtn"><i class="fas fa-file-powerpoint icon"></i>Convert to PowerPoint</button>
+    </section>
+
+    <!-- Ad Unit 2 -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-8171789665821084/1585093141"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2023 Muzz Tools by <strong>Muzz</strong>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pdfUpload = document.getElementById('pdfUpload');
+      const convertToPptBtn = document.getElementById('convertToPptBtn');
+
+      // Handle PDF upload
+      pdfUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          console.log("PDF file uploaded:", file.name);
+        }
+      });
+
+      // Convert PDF to PowerPoint
+      convertToPptBtn.addEventListener('click', async () => {
+        const file = pdfUpload.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = async (e) => {
+            const pdfData = new Uint8Array(e.target.result);
+
+            // Load PDFLib library
+            const pdfDoc = await PDFLib.PDFDocument.load(pdfData);
+            const pages = pdfDoc.getPages();
+
+            // Create a new PowerPoint presentation
+            const pptx = new PptxGenJS();
+
+            // Add each PDF page as a slide
+            for (const page of pages) {
+              const slide = pptx.addSlide();
+              const textContent = await page.getTextContent();
+              const text = textContent.items.map(item => item.str).join(" ");
+              slide.addText(text, { x: 0.5, y: 0.5, w: 9, h: 1, fontSize: 18 });
+            }
+
+            // Generate PowerPoint file
+            pptx.writeFile({ fileName: 'converted_presentation.pptx' });
+          };
+          reader.readAsArrayBuffer(file);
+        } else {
+          alert("Please upload a PDF file first.");
+        }
+      });
+    });
+  </script>
+  <!-- PDFLib Library -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <!-- PptxGenJS Library -->
+  <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.10.0/dist/pptxgen.min.js"></script>
+</body>
+</html>
