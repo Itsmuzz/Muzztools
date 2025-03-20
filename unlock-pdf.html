@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unlock PDF - Remove PDF password security, giving you the freedom to use your PDFs as you want.">
+  <meta name="keywords" content="Unlock PDF, Remove PDF password, PDF security, PDF tools, web tools">
+  <meta name="author" content="UnlockPDF">
+  <title>Unlock PDF</title>
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #ddd;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      color: #000;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Upload Section */
+    .upload-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+    }
+
+    .upload-btn:hover {
+      background-color: #333;
+    }
+
+    /* Password Input */
+    .password-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .password-section input {
+      padding: 0.5rem;
+      border: 1px solid #000;
+      border-radius: 5px;
+      font-size: 1rem;
+      margin-right: 1rem;
+    }
+
+    /* Unlock Button */
+    .unlock-btn {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .unlock-btn button {
+      padding: 1rem 2rem;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+    }
+
+    .unlock-btn button:hover {
+      background-color: #333;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f5f5f5;
+      border-top: 1px solid #ddd;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0;
+      color: #555;
+    }
+
+    /* Icons */
+    .icon {
+      margin-right: 0.5rem;
+    }
+  </style>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8171789665821084/2326488858" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-unlock icon"></i>Unlock PDF</h1>
+    <p>Remove PDF password security, giving you the freedom to use your PDFs as you want.</p>
+  </header>
+
+  <main>
+    <!-- Ad Unit 1 -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-8171789665821084/2326488858"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- PDF Upload Section -->
+    <section class="upload-section">
+      <input type="file" id="pdfUpload" accept="application/pdf" hidden>
+      <label for="pdfUpload" class="upload-btn"><i class="fas fa-upload icon"></i>Upload PDF</label>
+    </section>
+
+    <!-- Password Input Section -->
+    <section class="password-section">
+      <input type="password" id="pdfPassword" placeholder="Enter PDF password">
+    </section>
+
+    <!-- Unlock Button -->
+    <section class="unlock-btn">
+      <button id="unlockPdfBtn"><i class="fas fa-unlock icon"></i>Unlock PDF</button>
+    </section>
+
+    <!-- Ad Unit 2 -->
+    <div class="ad-unit">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-8171789665821084/1157711567"
+           data-ad-slot="0987654321"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2023 Muzz Tools by <strong>Muzz</strong>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pdfUpload = document.getElementById('pdfUpload');
+      const pdfPassword = document.getElementById('pdfPassword');
+      const unlockPdfBtn = document.getElementById('unlockPdfBtn');
+
+      // Handle PDF upload
+      pdfUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          console.log("PDF file uploaded:", file.name);
+        }
+      });
+
+      // Unlock PDF
+      unlockPdfBtn.addEventListener('click', async () => {
+        const file = pdfUpload.files[0];
+        const password = pdfPassword.value;
+
+        if (file && password) {
+          const reader = new FileReader();
+          reader.onload = async (e) => {
+            const pdfData = new Uint8Array(e.target.result);
+
+            try {
+              // Load PDFLib library
+              const pdfDoc = await PDFLib.PDFDocument.load(pdfData, { password });
+
+              // Remove password and save as unlocked PDF
+              const unlockedPdfBytes = await pdfDoc.save();
+
+              // Create a download link
+              const blob = new Blob([unlockedPdfBytes], { type: 'application/pdf' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'unlocked_document.pdf';
+              a.click();
+              URL.revokeObjectURL(url);
+            } catch (error) {
+              alert("Failed to unlock PDF. Please check the password and try again.");
+              console.error(error);
+            }
+          };
+          reader.readAsArrayBuffer(file);
+        } else {
+          alert("Please upload a PDF file and enter the password.");
+        }
+      });
+    });
+  </script>
+  <!-- PDFLib Library -->
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</body>
+</html>
